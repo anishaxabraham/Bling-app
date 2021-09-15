@@ -3,9 +3,15 @@ let root = document.querySelector("#root");
 // Setting entire body font to Monteserrat.
 document.body.style.cssText = "font-family: Montserrat;";
 
-// Function for creating element.
+// Function for creating element and appending children.
 function createEle(type) {
     return document.createElement(type);
+}
+
+function appendCh(children, parent) {
+    for(let child of children) {
+        parent.appendChild(child);
+    }
 }
 
 // Styling of the entire root element.
@@ -39,8 +45,9 @@ let body = createEle('div');
 let left = createEle('div');
 let right = createEle('div');
 
-body.appendChild(left);
-body.appendChild(right);
+appendCh([left, right], body);
+// body.appendChild(left);
+// body.appendChild(right);
 
 
 body.style.cssText = `
@@ -62,7 +69,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-margin-right: 3rem;
+margin-right: 1rem;
 padding: 1rem;
 width: 25rem;
 height: 20rem;
@@ -96,7 +103,7 @@ font-size: 1.5rem;
 margin-top: 1rem;
 margin-bottom: 1rem;
 `;
-intro.appendChild(introPara);
+
 
 introHead.style.cssText = `
 font-size: 4rem;
@@ -104,7 +111,9 @@ margin-top: 1rem;
 margin-bottom: 1rem;
 font-weight: bolder;
 `;
-intro.appendChild(introHead);
+appendCh([introPara, introHead], intro);
+// intro.appendChild(introPara);
+// intro.appendChild(introHead);
 
 left.appendChild(intro);
 
@@ -116,11 +125,15 @@ let traitor = createEle('button');
 let fallGuy = createEle('button');
 let radio = createEle('button');
 
-itemsContainer.appendChild(polaroid);
-itemsContainer.appendChild(tv);
-itemsContainer.appendChild(traitor);
-itemsContainer.appendChild(fallGuy);
-itemsContainer.appendChild(radio);
+appendCh([polaroid, tv, traitor, fallGuy, radio], itemsContainer);
+// itemsContainer.appendChild(polaroid);
+// itemsContainer.appendChild(tv);
+// itemsContainer.appendChild(traitor);
+// itemsContainer.appendChild(fallGuy);
+// itemsContainer.appendChild(radio);
+
+left.appendChild(itemsContainer);
+
 
 itemsContainer.style.cssText = `
 display: flex;
@@ -132,18 +145,23 @@ margin-top:3rem;
 
 polaroid.textContent = "Polaroid";
 polaroid.setAttribute("value", "Polaroid");
-polaroid.setAttribute("id", "btn");
+polaroid.classList.add("tile");
+
 tv.textContent = "TV";
 tv.setAttribute("value", "TV");
-tv.setAttribute("id", "btn");
+tv.classList.add("tile");
+
 traitor.textContent = "Traitor";
 traitor.setAttribute("value", "Traitor");
+traitor.classList.add("tile");
 
 fallGuy.textContent = "Fall Guy";
 fallGuy.setAttribute("value", "FallGuy");
+fallGuy.classList.add("tile");
 
 radio.textContent = "Radio";
 radio.setAttribute("value", "Radio");
+radio.classList.add("tile");
 
 let selection1 = createEle('div');
 let selection2 = createEle('div');
@@ -159,20 +177,42 @@ let images = {
     Radio : "./assets/images/radio-02.png"
 }
 
-polaroid.style.cssText = `
-background-color: transparent;
-border: 0.20rem solid black;
-border-radius: 0.5rem;
-margin-right: 1rem;
-margin-top: 1rem;
-margin-bottom: 1rem;
-padding: 1rem;
-box-shadow: 0.25rem 0.25rem grey;
-`;
+// polaroid.style.cssText = `
+// background-color: transparent;
+// border: 0.20rem solid black;
+// border-radius: 0.5rem;
+// margin-right: 1rem;
+// margin-top: 1rem;
+// margin-bottom: 1rem;
+// padding: 1rem;
+// box-shadow: 0.25rem 0.25rem grey;
+// `;
+
+let tileItems = document.getElementsByClassName('tile');
+for(let tileItem of tileItems) {
+    tileItem.style.cssText =`
+    background-color: transparent;
+    border: 0.20rem solid black;
+    border-radius: 0.5rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    box-shadow: 0.25rem 0.25rem grey;
+    `;
+}
+
 
 function itemSelection(event){
     console.log(event.target.value);
     console.log(typeof(event.target));
+    let callings = document.getElementsByClassName("tile");
+    for (let calling of callings) {
+        if ( calling.value !== event.target.value) {
+            calling.style.backgroundColor = "transparent";
+            calling.style.color = "black";
+        }
+    }
     if(event.target.style.backgroundColor === "transparent") {
 
         event.target.style.backgroundColor = "black";
@@ -194,8 +234,9 @@ function itemSelection(event){
         `;
         
         selection1.setAttribute("val1", images[event.target.value]);
-        right.appendChild(text);
-        right.appendChild(imgElement);
+        appendCh([text, imgElement], right);
+        // right.appendChild(text);
+        // right.appendChild(imgElement);
         
     }
     else {
@@ -208,108 +249,75 @@ function itemSelection(event){
     }
 }
 
+
 polaroid.addEventListener("click", (event) => {
-    tv.style.backgroundColor = "transparent";
-    tv.style.color = "black";
-    traitor.style.backgroundColor = "transparent";
-    traitor.style.color = "black";
-    fallGuy.style.backgroundColor = "transparent";
-    fallGuy.style.color = "black";
-    radio.style.backgroundColor = "transparent";
-    radio.style.color = "black";
+
+    // tv.style.backgroundColor = "transparent";
+    // tv.style.color = "black";
+    // traitor.style.backgroundColor = "transparent";
+    // traitor.style.color = "black";
+    // fallGuy.style.backgroundColor = "transparent";
+    // fallGuy.style.color = "black";
+    // radio.style.backgroundColor = "transparent";
+    // radio.style.color = "black";
     itemSelection(event);
 });
-
-tv.style.cssText = `
-background-color: transparent;
-border: 0.20rem solid black;
-border-radius: 0.5rem;
-margin: 1rem;
-padding: 1rem;
-box-shadow: 0.25rem 0.25rem grey;
-`;
 
 tv.addEventListener("click", (event) => {
-    polaroid.style.backgroundColor = "transparent";
-    polaroid.style.color = "black";
-    traitor.style.backgroundColor = "transparent";
-    traitor.style.color = "black";
-    fallGuy.style.backgroundColor = "transparent";
-    fallGuy.style.color = "black";
-    radio.style.backgroundColor = "transparent";
-    radio.style.color = "black";
+    // polaroid.style.backgroundColor = "transparent";
+    // polaroid.style.color = "black";
+    // traitor.style.backgroundColor = "transparent";
+    // traitor.style.color = "black";
+    // fallGuy.style.backgroundColor = "transparent";
+    // fallGuy.style.color = "black";
+    // radio.style.backgroundColor = "transparent";
+    // radio.style.color = "black";
     itemSelection(event);
 
 });
-
-traitor.style.cssText = `
-background-color: transparent;
-border: 0.20rem solid black;
-border-radius: 0.5rem;
-margin: 1rem;
-padding: 1rem;
-box-shadow: 0.25rem 0.25rem grey;
-`;
 
 traitor.addEventListener("click", (event) => {
-    polaroid.style.backgroundColor = "transparent";
-    polaroid.style.color = "black";
-    tv.style.backgroundColor = "transparent";
-    tv.style.color = "black";
-    traitor.style.backgroundColor = "transparent";
-    traitor.style.color = "black";
-    fallGuy.style.backgroundColor = "transparent";
-    fallGuy.style.color = "black";
-    radio.style.backgroundColor = "transparent";
-    radio.style.color = "black";
+    // polaroid.style.backgroundColor = "transparent";
+    // polaroid.style.color = "black";
+    // tv.style.backgroundColor = "transparent";
+    // tv.style.color = "black";
+    // traitor.style.backgroundColor = "transparent";
+    // traitor.style.color = "black";
+    // fallGuy.style.backgroundColor = "transparent";
+    // fallGuy.style.color = "black";
+    // radio.style.backgroundColor = "transparent";
+    // radio.style.color = "black";
     itemSelection(event);
 
 });
 
-fallGuy.style.cssText = `
-background-color: transparent;
-border: 0.20rem solid black;
-border-radius: 0.5rem;
-margin: 1rem;
-padding: 1rem;
-box-shadow: 0.25rem 0.25rem grey;
-`;
 fallGuy.addEventListener("click", (event) => {
-    polaroid.style.backgroundColor = "transparent";
-    polaroid.style.color = "black";
-    tv.style.backgroundColor = "transparent";
-    tv.style.color = "black";
-    traitor.style.backgroundColor = "transparent";
-    traitor.style.color = "black";
-    radio.style.backgroundColor = "transparent";
-    radio.style.color = "black";
+    // polaroid.style.backgroundColor = "transparent";
+    // polaroid.style.color = "black";
+    // tv.style.backgroundColor = "transparent";
+    // tv.style.color = "black";
+    // traitor.style.backgroundColor = "transparent";
+    // traitor.style.color = "black";
+    // radio.style.backgroundColor = "transparent";
+    // radio.style.color = "black";
     itemSelection(event);
 
 });
 
-radio.style.cssText = `
-background-color: transparent;
-border: 0.20rem solid black;
-border-radius: 0.5rem;
-margin: 1rem;
-padding: 1rem;
-box-shadow: 0.25rem 0.25rem grey;
-
-`;
 
 radio.addEventListener("click", (event) => {
-    polaroid.style.backgroundColor = "transparent";
-    polaroid.style.color = "black";
-    tv.style.backgroundColor = "transparent";
-    tv.style.color = "black";
-    traitor.style.backgroundColor = "transparent";
-    traitor.style.color = "black";
-    fallGuy.style.backgroundColor = "transparent";
-    fallGuy.style.color = "black";
+    // polaroid.style.backgroundColor = "transparent";
+    // polaroid.style.color = "black";
+    // tv.style.backgroundColor = "transparent";
+    // tv.style.color = "black";
+    // traitor.style.backgroundColor = "transparent";
+    // traitor.style.color = "black";
+    // fallGuy.style.backgroundColor = "transparent";
+    // fallGuy.style.color = "black";
     itemSelection(event);
 
 });
-left.appendChild(itemsContainer);
+
 
 // Contains the input, background color selection and blob selection.
 let form = createEle('div');
@@ -439,7 +447,6 @@ radioDiv.addEventListener("change", (event) => {
         console.log(imgElement);
         imgBlob.style.cssText = `
         display: inline-block,
-        //margin-left: 3rem;
         width:18rem;
         height: 17rem;
         margin-top: 3rem;
@@ -482,20 +489,19 @@ outline: none;
 let cardArea = createEle('div');
 
 cardArea.style.cssText = `
-background-color: red;
+
 display:flex;
 flex-direction: row;
 flex-wrap:wrap;
-align-items: flex-start;
-justify-content: flex-start;
+align-items: center;
+justify-content: center;
 position:relative;
 z-index:1;
+margin-top:1rem;
 `;
 
 root.appendChild(cardArea);
-cardArea.addEventListener("mouseover", () => {
-    console.log("hey cardarea");
-})
+
 let card = createEle('div');
 
 cardArea.appendChild(card);
@@ -507,15 +513,15 @@ function cardGen(el1, el2) {
     width: 20rem;
     height: 25rem;
     margin: 1rem;
-    border: 0.5rem solid black;
+    border: 0.25rem solid black;
     z-index: 2;
+    box-shadow: 0.25rem 0.25rem grey;
     
     `;
     card.style.backgroundColor = backdrop;
     cardArea.appendChild(card);
 
     let clone = right.cloneNode(true);
-    console.log(clone);
     
     clone.style.cssText = `
     display:flex;
@@ -524,7 +530,6 @@ function cardGen(el1, el2) {
     align-tems: flex-start;
     width: 15rem;
     height: 20rem;
-    margin-top: 0rem;
     margin-left: 2rem;
     position: absolute;
     //border: 0.5rem solid black;
@@ -541,9 +546,9 @@ function cardGen(el1, el2) {
     margin-left: 16.5rem;
     z-index: 4;
     `;
-    
-    card.appendChild(imgDel);
-    card.appendChild(clone);
+    appendCh([imgDel,clone], card);
+    // card.appendChild(imgDel);
+    // card.appendChild(clone);
     
     
     imgDel.addEventListener("click", () => {
@@ -566,39 +571,59 @@ left.appendChild(enter);
 
 let footer = createEle('div');
 let item1 = createEle('p');
-item1.innerHTML = "\u2665" + " Credits:";
+item1.innerHTML = "\u2665" + "Credits:";
+
+item1.style.cssText = `
+margin: 1rem;
+padding: 1rem;
+font-weight: bold;`;
+
 let item2 = createEle('a');
+item2.classList.add('footer-style');
 item2.setAttribute("href", "#");
 item2.textContent = "Polaroid";
+
 let item3 = createEle('a');
+item3.classList.add('footer-style');
 item3.setAttribute("href", "#");
 item3.textContent = "TV";
+
 let item4 = createEle('a');
+item4.classList.add('footer-style');
 item4.setAttribute("href", "#");
 item4.textContent = "Traitor";
+
 let item5 = createEle('a');
+item5.classList.add('footer-style');
 item5.setAttribute("href", "#");
 item5.textContent = "Fall Guy";
+
 let item6 = createEle('a');
+item6.classList.add('footer-style');
 item6.setAttribute("href", "#");
 item6.textContent = "Radio";
-footer.appendChild(item1);
-footer.appendChild(item2);
-footer.appendChild(item3);
-footer.appendChild(item4);
-footer.appendChild(item5);
-footer.appendChild(item6);
 
-// let aItems = document.querySelectorAll('div > a');
-// console.log(aItems)
-// for (let aItem of aItems) {
-//     console.log(aItem);
-//     aItem.style.cssText = `
-//     margin: 1rem;
-//     padding: 1rem;
-//     font-weight: bold;
-//     `;
-// }
+let items = [item1,item2,item3,item4,item5,item6];
+appendCh(items, footer);
+// footer.appendChild(item2);
+// footer.appendChild(item3);
+// footer.appendChild(item4);
+// footer.appendChild(item5);
+// footer.appendChild(item6);
+root.appendChild(footer);
+let aItems = document.getElementsByClassName('footer-style');
+console.log(aItems);
+
+for (let aItem of aItems) {
+    console.log(aItem);
+    aItem.style.cssText = `
+    margin: 1rem;
+    padding: 1rem;
+    font-weight: bold;
+    text-decoration:none;
+    color: black;
+    `;
+}
 
 footer.style.cssText = `
 
@@ -609,44 +634,127 @@ justify-content: center;
 align-items: flex-end;
 margin-top: 5rem;`;
 
-item1.style.cssText = `
-margin: 1rem;
-padding: 1rem;
-font-weight: bold;`;
 
-item2.style.cssText = `
-margin: 1rem;
-padding: 1rem;
-font-weight: bold;
-text-decoration:none;
-`;
+function myFunctionx(x) {
+    if (x.matches) { // If media query matches
+        root.style.margin = "1rem 5rem";
+        root.style.padding = "1rem 2rem";
+        head.style.display = "block";
+        head.style.textAlign = "center";
+        head.style.fontWeight = "bold";
+        head.style.margin = "2rem";
+        head.style.fontSize = "2rem";
+        right.style.marginRight = "1rem";
+        right.style.padding = "1rem";
+        right.style.width = "60%";
+        right.style.height = "20rem";
 
-item3.style.cssText = `
-margin: 1rem;
-padding: 1rem;
-font-weight: bold;
-text-decoration:none;
-`;
+        body.style.display = "flex";
+        body.style.flexDirection = "row";
+        left.style.width = "100%";
+        right.style.marginLeft = "1rem";
+        itemsContainer.style.flexWrap = "no-wrap";
+        form.style.flexWrap = "wrap";
+        itemsContainer.style.flexWrap = "wrap";
+        input.style.marginBottom = "1rem";
 
-item4.style.cssText = `
-margin: 1rem;
-padding: 1rem;
-font-weight: bold;
-text-decoration:none;
-`;
+        dropdown.style.marginBottom = "1rem";
+        radioDiv.style.marginBottom = "1rem";
+        footer.style.flexDirection = "row";
+        footer.style.margin = "0rem";
+        footer.style.flexWrap = "wrap";
+        footer.style.maxWidth = "100%";
+        enter.style.marginBottom = "2rem";
+    } //else {
+    //   document.body.style.backgroundColor = "pink";
+    // }
+  }
+  
+  let x = window.matchMedia("(min-width: 768px) and (max-width: 1166px)")
+  myFunctionx(x) // Call listener function at run time
+  x.addListener(myFunctionx) // Attach listener function on state changes
 
-item5.style.cssText = `
-margin: 1rem;
-padding: 1rem;
-font-weight: bold;
-text-decoration:none;
-`;
 
-item6.style.cssText = `
-margin: 1rem;
-padding: 1rem;
-font-weight: bold;
-text-decoration:none;
-`;
 
-root.appendChild(footer);
+
+  function myFunctiony(y) {
+    if (y.matches) { // If media query matches
+        root.style.margin = "1rem";
+        body.style.display = "flex";
+        body.style.flexDirection = "column";
+        root.style.paddingLeft = "2rem";
+        left.style.width = "90%";
+        right.style.width = "90%";
+        itemsContainer.style.flexWrap = "wrap";
+        form.style.flexWrap = "wrap";
+        input.style.marginBottom = "1rem";
+        dropdown.style.marginBottom = "1rem";
+        radioDiv.style.marginBottom = "1rem";
+        footer.style.flexDirection = "row";
+        footer.style.margin = "0rem";
+        footer.style.flexWrap = "wrap";
+        footer.style.maxWidth = "100%";
+        enter.style.marginBottom = "2rem";
+        cardArea.style.marginTop = "2rem";
+    } //else {
+    //   document.body.style.backgroundColor = "blue";
+    // }
+  }
+  
+  let y = window.matchMedia("(min-width:482px) and (max-width: 767px)")
+  myFunctiony(y) // Call listener function at run time
+  y.addListener(myFunctiony) // Attach listener function on state changes
+
+
+
+
+  function myFunctionz(z) {
+    if (z.matches) { // If media query matches
+        root.style.margin = "1rem";
+        body.style.display = "flex";
+        body.style.flexDirection = "column";
+        left.style.width = "90%";
+        right.style.width = "90%";
+        itemsContainer.style.flexWrap = "wrap";
+        form.style.flexWrap = "wrap";
+        input.style.marginBottom = "1rem";
+        dropdown.style.marginBottom = "1rem";
+        radioDiv.style.marginBottom = "1rem";
+        footer.style.flexDirection = "row";
+        footer.style.margin = "0rem";
+        footer.style.flexWrap = "wrap";
+        footer.style.maxWidth = "100%";
+        enter.style.marginBottom = "2rem";
+        cardArea.style.marginTop = "2rem";
+    } 
+  }
+  
+  let z = window.matchMedia("(min-width: 321px) and (max-width: 481px)")
+  myFunctionz(z) // Call listener function at run time
+  z.addListener(myFunctionz) // Attach listener function on state changes
+
+
+  function myFunctionw(w) {
+    if (w.matches) { // If media query matches
+      root.style.margin = "1rem";
+      body.style.display = "flex";
+      body.style.flexDirection = "column";
+      left.style.width = "90%";
+      right.style.width = "90%";
+      itemsContainer.style.flexWrap = "wrap";
+      form.style.flexWrap = "wrap";
+      input.style.marginBottom = "1rem";
+      dropdown.style.marginBottom = "1rem";
+      radioDiv.style.marginBottom = "1rem";
+      footer.style.flexDirection = "row";
+      footer.style.margin = "0rem";
+      footer.style.flexWrap = "wrap";
+      footer.style.maxWidth = "100%";
+      enter.style.marginBottom = "2rem";
+      cardArea.style.marginTop = "2rem";
+    } 
+  }
+  
+  let w = window.matchMedia("(max-width: 320px)")
+  myFunctionw(w) // Call listener function at run time
+  w.addListener(myFunctionw) // Attach listener function on state changes
