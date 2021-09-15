@@ -438,11 +438,11 @@ radioDiv.addEventListener("change", (event) => {
         imgBlob.setAttribute("src", "./assets/images/blob.png");
         console.log(imgElement);
         imgBlob.style.cssText = `
-        display: block,
+        display: inline-block,
         //margin-left: 3rem;
-        width: 18rem;
-        height: 15rem;
-        margin-top:3rem;
+        width:18rem;
+        height: 17rem;
+        margin-top: 3rem;
         position: absolute;
         z-index: -1;
         `;
@@ -478,8 +478,6 @@ border: 0.20rem solid black;
 box-shadow: 0.25rem 0.25rem grey;
 outline: none;
 `;
-
-
 
 let cardArea = createEle('div');
 
@@ -520,13 +518,19 @@ function cardGen(el1, el2) {
     console.log(clone);
     
     clone.style.cssText = `
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-tems: flex-start;
     width: 15rem;
     height: 20rem;
-    margin-top: 14rem;
+    margin-top: 0rem;
     margin-left: 2rem;
+    position: absolute;
     //border: 0.5rem solid black;
     z-index: 3;
     `;
+    
     let imgDel = createEle('input');
     imgDel.setAttribute("type","image");
     imgDel.setAttribute("src", "./assets/images/icon_delete.png");
@@ -537,6 +541,7 @@ function cardGen(el1, el2) {
     margin-left: 16.5rem;
     z-index: 4;
     `;
+    
     card.appendChild(imgDel);
     card.appendChild(clone);
     
@@ -561,7 +566,7 @@ left.appendChild(enter);
 
 let footer = createEle('div');
 let item1 = createEle('p');
-item1.textContent = "Credits:";
+item1.innerHTML = "\u2665" + " Credits:";
 let item2 = createEle('a');
 item2.setAttribute("href", "#");
 item2.textContent = "Polaroid";
