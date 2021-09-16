@@ -616,8 +616,6 @@ function myFunctionx(x) {
   myFunctionx(x) 
   x.addListener(myFunctionx) 
 
-
-
   function myFunctiony(y) {
     if (y.matches) { 
         root.style.margin = "1rem";
@@ -647,9 +645,6 @@ function myFunctionx(x) {
   let y = window.matchMedia("(min-width:482px) and (max-width: 767px)")
   myFunctiony(y) 
   y.addListener(myFunctiony)
-
-
-
 
   function myFunctionz(z) {
     if (z.matches) { 
