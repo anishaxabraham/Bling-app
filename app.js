@@ -1,7 +1,7 @@
 let root = document.querySelector("#root");
 
 // Setting entire body font to Monteserrat.
-document.body.style.cssText = "font-family: Montserrat;";
+document.body.style.fontFamily = "Montserrat";
 
 // Function for creating element and appending children.
 function createEle(type) {
@@ -15,28 +15,25 @@ function appendCh(children, parent) {
 }
 
 // Styling of the entire root element.
-root.style.cssText = `
-display: flex;
-flex-direction: column;
-justify-content: flex-start;
-align-items: flex-center;
-margin: 1rem 5rem;
-padding: 1rem 2rem;
-`
+root.style.display = "flex";
+root.style.flexDirection = "column";
+root.style.justifyContent = "flex-start";
+root.style.alignItems = "flex-center";
+root.style.margin = "1rem 5rem";
+root.style.padding = "1rem 2rem";
+
 
 // Creating a head element for Bling!! heading.
 let head = createEle('div');
 
 head.textContent = "BLING!"
 
-head.style.cssText = `
-    display:block;
-    text-align: center;
-    font-weight: bold;
-    margin: 2rem;
-    font-size: 2rem;
-    text-shadow: 0.15rem 0.15rem #FFA500;
-`;
+head.style.display = "block";
+head.style.textAlign = "center";
+head.style.fontWeight = "bold";
+head.style.margin = "2rem";
+head.style.fontSize = "2rem";
+head.style.textShadow = "0.15rem 0.15rem #FFA500";
 
 root.appendChild(head);
 
@@ -49,44 +46,35 @@ appendCh([left, right], body);
 // body.appendChild(left);
 // body.appendChild(right);
 
+body.style.display = "flex";
+body.style.flexDirection = "row";
+body.style.justifyContent = "space-between";
+body.style.alignItems = "center";
 
-body.style.cssText = `
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-`;
+left.style.display = "flex";
+left.style.flexDirection = "column";
+left.style.justifyContent = "flex-start";
+left.style.alignItems = "flex-start";
 
-left.style.cssText = `
-display: flex;
-flex-direction: column;
-justify-content: flex-start;
-align-items: flex-start;
-`;
+right.style.display = "flex";
+right.style.flexDirection = "column";
+right.style.justifyContent = "center";
+right.style.alignItems = "center";
+right.style.marginRight = "1rem";
+right.style.padding = "1rem";
+right.style.width = "25rem";
+right.style.height = "20rem";
 
-right.style.cssText = `
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-margin-right: 1rem;
-padding: 1rem;
-width: 25rem;
-height: 20rem;
-`;
 root.appendChild(body);
 
 // Creating variable for content appearing on the left.
 let text = createEle('h1');
 
-text.style.cssText = `
-font-size: 4rem;
-font-weight: bolder;
-text-align: center;
-text-shadow: 0.15rem 0.15rem gray;
-margin-top: -13rem;
-
-`;
+text.style.fontSize = "4rem";
+text.style.fontWeight = "bolder";
+text.style.textAlign = "center";
+text.style.textShadow = "0.15rem 0.15rem gray";
+text.style.marginTop = "-13rem";
 
 right.appendChild(text);
 
@@ -98,19 +86,15 @@ let introHead = createEle('h1');
 introPara.textContent = "Sizzle your Life";
 introHead.innerHTML = "Make a Card<br/>";
 
-introPara.style.cssText = `
-font-size: 1.5rem;
-margin-top: 1rem;
-margin-bottom: 1rem;
-`;
+introPara.style.fontSize = "1.5rem";
+introPara.style.marginTop = "1rem";
+introPara.style.marginBottom = "1rem";
 
+introHead.style.fontSize = "4rem";
+introHead.style.marginTop = "1rem";
+introHead.style.marginBottom = "1rem";
+introHead.style.fontWeight = "bolder";
 
-introHead.style.cssText = `
-font-size: 4rem;
-margin-top: 1rem;
-margin-bottom: 1rem;
-font-weight: bolder;
-`;
 appendCh([introPara, introHead], intro);
 left.appendChild(intro);
 
@@ -126,14 +110,11 @@ appendCh([polaroid, tv, traitor, fallGuy, radio], itemsContainer);
 
 left.appendChild(itemsContainer);
 
-
-itemsContainer.style.cssText = `
-display: flex;
-flex-direction: row;
-justify-content: flex-start;
-align-items: stretch;
-margin-top:3rem;
-`;
+itemsContainer.style.display = "flex";
+itemsContainer.style.flexDirection = "row";
+itemsContainer.style.justifyContent = "flex-start";
+itemsContainer.style.alignItems = "stretch";
+itemsContainer.style.marginTop = "rem";
 
 polaroid.textContent = "Polaroid";
 polaroid.setAttribute("value", "Polaroid");
@@ -172,16 +153,14 @@ let images = {
 
 let tileItems = document.getElementsByClassName('tile');
 for(let tileItem of tileItems) {
-    tileItem.style.cssText =`
-    background-color: transparent;
-    border: 0.20rem solid black;
-    border-radius: 0.5rem;
-    margin-right: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    box-shadow: 0.25rem 0.25rem grey;
-    `;
+    tileItem.style.backgroundColor = "transparent";
+    tileItem.style.border = "0.20rem solid black";
+    tileItem.style.borderRadius = "0.5rem";
+    tileItem.style.marginRight = "1rem";
+    tileItem.style.marginTop = "1rem";
+    tileItem.style.marginBottom = "1rem";
+    tileItem.style.padding = "1rem";
+    tileItem.style.boxShadow = "0.25rem 0.25rem grey";
 }
 
 // Function for action on clicking tiles.
@@ -207,14 +186,12 @@ function itemSelection(event){
         selection2.setAttribute("val2", text.textContent);
         text.style.display = "block";
         imgElement.setAttribute("src", images[event.target.value]);
-        imgElement.style.cssText = `
-        display: block,
-        //margin-left: 3rem;
-        width: 10rem;
-        height: 10rem;
-        margin-top: 3rem;
-        position: absolute;
-        `;
+
+        imgElement.style.display = "block",
+        imgElement.style.width = "10rem";
+        imgElement.style.height = "10rem";
+        imgElement.style.marginTop = "3rem";
+        imgElement.style.position = "absolute";
         
         selection1.setAttribute("val1", images[event.target.value]);
         appendCh([text, imgElement], right);
@@ -259,13 +236,11 @@ radio.addEventListener("click", (event) => {
 // Contains the input, background color selection and blob selection.
 let form = createEle('div');
 
-form.style.cssText = `
-display: flex;
-flex-direction: row;
-justify-content: flex-start;
-align-items: stretch;
-margin-top: 2rem;
-`;
+form.style.display = "flex";
+form.style.flexDirection = "row";
+form.style.justifyContent = "flex-start";
+form.style.alignItems = "stretch";
+form.style.marginTop = "2rem";
 
 let input = createEle('input');
 
@@ -280,17 +255,15 @@ input.addEventListener("input", (e) => {
 
 });
 
-input.style.cssText = `
-width: 10rem;
-border-radius: 0.5rem;
-border: 1px solid grey;
-color: white;
-padding: 1rem;
-margin-right: 1rem;
-background-color: black;
-box-shadow: 0.25rem 0.25rem grey;
-outline: none;
-`;
+input.style.width = "10rem";
+input.style.borderRadius = "0.5rem";
+input.style.border = "1px solid grey";
+input.style.color = "white";
+input.style.padding = "1rem";
+input.style.marginRight = "1rem";
+input.style.backgroundColor = "black";
+input.style.boxShadow = "0.25rem 0.25rem grey";
+input.style.outline = "none";
 
 form.appendChild(input);
 
@@ -324,17 +297,15 @@ function changeColor(value) {
     backdrop = value;
 };
 
-dropdown.style.cssText = `
-width: 10rem;
-border-radius: 0.5rem;
-border: 1px solid grey;
-color: gray;
-padding: 1rem;
-margin-right: 1rem;
-background-color: black;
-box-shadow: 0.25rem 0.25rem grey;
-outline: none;
-`;
+dropdown.style.width = "10rem";
+dropdown.style.borderRadius = "0.5rem";
+dropdown.style.border = "1px solid grey";
+dropdown.style.color = "gray";
+dropdown.style.padding = "1rem";
+dropdown.style.marginRight = "1rem";
+dropdown.style.backgroundColor = "black";
+dropdown.style.boxShadow = "0.25rem 0.25rem grey";
+dropdown.style.outline = "none";
 
 form.appendChild(dropdown);
 
@@ -354,16 +325,15 @@ function makeRadioButton(options) {
         radioDiv.appendChild(label);
         }
     form.appendChild(radioDiv);
-    radioDiv.style.cssText = `
-    border-radius: 0.5rem;
-    background-color: black;
-    box-shadow: 0.25rem 0.25rem grey;
-    color: white;
-    width: 10rem;
-    padding: 0.5rem;
-    padding-top:1rem;
-    outline: none;
-    `;
+    radioDiv.style.borderRadius = "0.5rem";
+    radioDiv.style.backgroundColor = "black";
+    radioDiv.style.boxShadow = "0.25rem 0.25rem grey";
+    radioDiv.style.color = "white";
+    radioDiv.style.width = "10rem";
+    radioDiv.style.padding = "0.5rem";
+    radioDiv.style.paddingTop = "1rem";
+    radioDiv.style.outline = "none";
+
 }
 
 let options = [{
@@ -383,16 +353,13 @@ radioDiv.addEventListener("change", (event) => {
     if(event.target.value === "Blob") {
         imgBlob.setAttribute("src", "./assets/images/blob.png");
         console.log(imgElement);
-        imgBlob.style.cssText = `
-        display: inline-block,
-        width:18rem;
-        height: 17rem;
-        margin-top: 3rem;
-        position: absolute;
-        z-index: -1;
-        `;
 
-        
+        imgBlob.style.display = inline-block,
+        imgBlob.style.width = "18rem";
+        imgBlob.style.height = "17rem";
+        imgBlob.style.marginTop = "3rem";
+        imgBlob.style.position = "absolute";
+        imgBlob.style.zIndex = "-1";
     }
     else {
         imgBlob.style.cssText = `display:none;`;
@@ -406,37 +373,32 @@ left.appendChild(form);
 // Camera button.
 let enter = createEle('button');
 
-enter.style.cssText = `
-margin-top: 2rem;
-background-image: url("./assets/images/camera.png");
-width: 4rem;
-height: 4rem;
-font-size: 1rem;
-background-size: 2rem 2rem;
-padding: 1rem;
-background-repeat: no-repeat;
-background-position: center;
-border-radius: 0.5rem;
-background-color: transparent;
-border: 0.20rem solid black;
-box-shadow: 0.25rem 0.25rem grey;
-outline: none;
-`;
+enter.style.marginTop = "2rem";
+enter.style.backgroundImage = `url("./assets/images/camera.png")`;
+enter.style.width = "4rem";
+enter.style.height = "4rem";
+enter.style.fontSize = "1rem";
+enter.style.backgroundSize = "2rem 2rem";
+enter.style.padding = "1rem";
+enter.style.backgroundRepeat = "no-repeat";
+enter.style.backgroundPosition = "center";
+enter.style.borderRadius = "0.5rem";
+enter.style.backgroundColor = "transparent";
+enter.style.border = "0.20rem solid black";
+enter.style.boxShadow = "0.25rem 0.25rem grey";
+enter.style.outline = "none";
 
 // Area where the card is generated.
 let cardArea = createEle('div');
 
-cardArea.style.cssText = `
-
-display:flex;
-flex-direction: row-reverse;
-flex-wrap:wrap;
-align-items: center;
-justify-content: center;
-position:relative;
-z-index:1;
-margin-top:1rem;
-`;
+cardArea.style.display = "flex";
+cardArea.style.flexDirection = "row-reverse";
+cardArea.style.flexWrap = "wrap-reverse";
+cardArea.style.alignItems = "center";
+cardArea.style.justifyContent = "center";
+cardArea.style.position = "relative";
+cardArea.style.zIndex = "1";
+cardArea.style.marginTop = "1rem";
 
 root.appendChild(cardArea);
 
@@ -447,43 +409,39 @@ cardArea.appendChild(card);
 // Function for generation of card.
 function cardGen(el1, el2) {
     let card = createEle('div');
-    card.style.cssText = `
-    width: 20rem;
-    height: 25rem;
-    margin: 1rem;
-    border: 0.25rem solid black;
-    z-index: 2;
-    box-shadow: 0.25rem 0.25rem grey;
-    
-    `;
+
+    card.style.width = "20rem";
+    card.style.height = "25rem";
+    card.style.margin = "1rem";
+    card.style.border = "0.25rem solid black";
+    card.style.zIndex = "2";
+    card.style.boxShadow = "0.25rem 0.25rem grey";
+
     card.style.backgroundColor = backdrop;
     cardArea.appendChild(card);
 
     let clone = right.cloneNode(true);
     
-    clone.style.cssText = `
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-tems: flex-start;
-    width: 15rem;
-    height: 20rem;
-    margin-left: 2rem;
-    position: absolute;
-    //border: 0.5rem solid black;
-    z-index: 3;
-    `;
+    clone.style.display = "flex";
+    clone.style.flexDirection = "column";
+    clone.style.justifyContent = "center";
+    clone.style.alignItems = "flex-start";
+    clone.style.width = "15rem";
+    clone.style.height = "20rem";
+    clone.style.marginLeft = "2rem";
+    clone.style.position = "absolute";
+    clone.style.zIndex = "3";
     
     let imgDel = createEle('input');
     imgDel.setAttribute("type","image");
     imgDel.setAttribute("src", "./assets/images/icon_delete.png");
-    imgDel.style.cssText = `
-    width: 3rem;
-    height: 3rem;
-    position:relative;
-    margin-left: 16.5rem;
-    z-index: 4;
-    `;
+
+    imgDel.style.width = "3rem";
+    imgDel.style.height = "3rem";
+    imgDel.style.position = "relative";
+    imgDel.style.marginLeft = "16.5rem";
+    imgDel.style.zIndex = "4";
+
     appendCh([imgDel,clone], card);
     
     imgDel.addEventListener("click", () => {
@@ -514,10 +472,9 @@ let footer = createEle('div');
 let item1 = createEle('p');
 item1.innerHTML = "\u2665" + "Credits:";
 
-item1.style.cssText = `
-margin: 1rem;
-padding: 1rem;
-font-weight: bold;`;
+item1.style.margin = "1rem";
+item1.style.padding = "1rem";
+item1.style.fontWeight = "bold";
 
 let item2 = createEle('a');
 item2.classList.add('footer-style');
@@ -557,24 +514,20 @@ for (let aItem of aItems) {
     aItem.addEventListener("mouseout", () => {
         aItem.style.textDecoration = "none";
     })
-    aItem.style.cssText = `
-    margin: 1rem;
-    padding: 1rem;
-    font-weight: bold;
-    text-decoration:none;
-    color: black;
-    `;
+
+    aItem.style.margin = "1rem";
+    aItem.style.padding = "1rem";
+    aItem.style.fontWeight = "bold";
+    aItem.style.textDecoration = "none";
+    aItem.style.color = "black";
 }
 
-footer.style.cssText = `
-
-order:5;
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: flex-end;
-margin-top: 5rem;`;
-
+footer.style.order = "5";
+footer.style.display = "flex";
+footer.style.flexDirection = "row";
+footer.style.justifyContent = "center";
+footer.style.alignItems = "flex-end";
+footer.style.marginTop = "5rem";
 
 function myFunctionx(x) {
     if (x.matches) { 
