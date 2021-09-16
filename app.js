@@ -112,9 +112,6 @@ margin-bottom: 1rem;
 font-weight: bolder;
 `;
 appendCh([introPara, introHead], intro);
-// intro.appendChild(introPara);
-// intro.appendChild(introHead);
-
 left.appendChild(intro);
 
 // The image selection items are wrapped in itemsContainer.
@@ -126,11 +123,6 @@ let fallGuy = createEle('button');
 let radio = createEle('button');
 
 appendCh([polaroid, tv, traitor, fallGuy, radio], itemsContainer);
-// itemsContainer.appendChild(polaroid);
-// itemsContainer.appendChild(tv);
-// itemsContainer.appendChild(traitor);
-// itemsContainer.appendChild(fallGuy);
-// itemsContainer.appendChild(radio);
 
 left.appendChild(itemsContainer);
 
@@ -177,16 +169,6 @@ let images = {
     Radio : "./assets/images/radio-02.png"
 }
 
-// polaroid.style.cssText = `
-// background-color: transparent;
-// border: 0.20rem solid black;
-// border-radius: 0.5rem;
-// margin-right: 1rem;
-// margin-top: 1rem;
-// margin-bottom: 1rem;
-// padding: 1rem;
-// box-shadow: 0.25rem 0.25rem grey;
-// `;
 
 let tileItems = document.getElementsByClassName('tile');
 for(let tileItem of tileItems) {
@@ -202,6 +184,7 @@ for(let tileItem of tileItems) {
     `;
 }
 
+// Function for action on clicking tiles.
 
 function itemSelection(event){
     console.log(event.target.value);
@@ -235,9 +218,6 @@ function itemSelection(event){
         
         selection1.setAttribute("val1", images[event.target.value]);
         appendCh([text, imgElement], right);
-        // right.appendChild(text);
-        // right.appendChild(imgElement);
-        
     }
     else {
         imgElement.style.cssText = `display:none;`;
@@ -251,69 +231,26 @@ function itemSelection(event){
 
 
 polaroid.addEventListener("click", (event) => {
-
-    // tv.style.backgroundColor = "transparent";
-    // tv.style.color = "black";
-    // traitor.style.backgroundColor = "transparent";
-    // traitor.style.color = "black";
-    // fallGuy.style.backgroundColor = "transparent";
-    // fallGuy.style.color = "black";
-    // radio.style.backgroundColor = "transparent";
-    // radio.style.color = "black";
     itemSelection(event);
 });
 
 tv.addEventListener("click", (event) => {
-    // polaroid.style.backgroundColor = "transparent";
-    // polaroid.style.color = "black";
-    // traitor.style.backgroundColor = "transparent";
-    // traitor.style.color = "black";
-    // fallGuy.style.backgroundColor = "transparent";
-    // fallGuy.style.color = "black";
-    // radio.style.backgroundColor = "transparent";
-    // radio.style.color = "black";
     itemSelection(event);
 
 });
 
 traitor.addEventListener("click", (event) => {
-    // polaroid.style.backgroundColor = "transparent";
-    // polaroid.style.color = "black";
-    // tv.style.backgroundColor = "transparent";
-    // tv.style.color = "black";
-    // traitor.style.backgroundColor = "transparent";
-    // traitor.style.color = "black";
-    // fallGuy.style.backgroundColor = "transparent";
-    // fallGuy.style.color = "black";
-    // radio.style.backgroundColor = "transparent";
-    // radio.style.color = "black";
     itemSelection(event);
 
 });
 
 fallGuy.addEventListener("click", (event) => {
-    // polaroid.style.backgroundColor = "transparent";
-    // polaroid.style.color = "black";
-    // tv.style.backgroundColor = "transparent";
-    // tv.style.color = "black";
-    // traitor.style.backgroundColor = "transparent";
-    // traitor.style.color = "black";
-    // radio.style.backgroundColor = "transparent";
-    // radio.style.color = "black";
     itemSelection(event);
 
 });
 
 
 radio.addEventListener("click", (event) => {
-    // polaroid.style.backgroundColor = "transparent";
-    // polaroid.style.color = "black";
-    // tv.style.backgroundColor = "transparent";
-    // tv.style.color = "black";
-    // traitor.style.backgroundColor = "transparent";
-    // traitor.style.color = "black";
-    // fallGuy.style.backgroundColor = "transparent";
-    // fallGuy.style.color = "black";
     itemSelection(event);
 
 });
@@ -353,9 +290,7 @@ margin-right: 1rem;
 background-color: black;
 box-shadow: 0.25rem 0.25rem grey;
 outline: none;
-
 `;
-
 
 form.appendChild(input);
 
@@ -366,19 +301,21 @@ let values = ["Gold", "Snow", "DodgerBlue", "LightSalmon", "LightCoral", "LightP
 dropdown.name = "colors";
 dropdown.id = "colors";
 let backdrop;
+
+// Function for baackground change on selection.
 for (const val of values)
 {
     var option = createEle("option");
     option.value = val;
-    option.text = val; //val.charAt(0).toUpperCase() + val.slice(1);
+    option.text = val; 
     if (val == "Gold") {
         option.setAttribute("selected", "selected");
         document.body.style.backgroundColor = val;
         backdrop = val;
     }
     dropdown.appendChild(option);
-
 }
+
 dropdown.addEventListener("change", (event) => {
     return changeColor(event.target.value);
 })
@@ -400,9 +337,10 @@ outline: none;
 `;
 
 form.appendChild(dropdown);
+
 let radioDiv = createEle('div');
 
-
+// Function for creating radio buttons.
 function makeRadioButton(options) {   
     for (let i = 0; i < options.length; i++) {
         
@@ -459,16 +397,15 @@ radioDiv.addEventListener("change", (event) => {
     else {
         imgBlob.style.cssText = `display:none;`;
         imgBlob.removeAttribute("src");
-        //right.appendChild(imgBlob);
     }
     right.appendChild(imgBlob);
 })
 
 left.appendChild(form);
 
-
-
+// Camera button.
 let enter = createEle('button');
+
 enter.style.cssText = `
 margin-top: 2rem;
 background-image: url("./assets/images/camera.png");
@@ -486,12 +423,13 @@ box-shadow: 0.25rem 0.25rem grey;
 outline: none;
 `;
 
+// Area where the card is generated.
 let cardArea = createEle('div');
 
 cardArea.style.cssText = `
 
 display:flex;
-flex-direction: row;
+flex-direction: row-reverse;
 flex-wrap:wrap;
 align-items: center;
 justify-content: center;
@@ -506,7 +444,7 @@ let card = createEle('div');
 
 cardArea.appendChild(card);
 
-
+// Function for generation of card.
 function cardGen(el1, el2) {
     let card = createEle('div');
     card.style.cssText = `
@@ -547,27 +485,30 @@ function cardGen(el1, el2) {
     z-index: 4;
     `;
     appendCh([imgDel,clone], card);
-    // card.appendChild(imgDel);
-    // card.appendChild(clone);
-    
     
     imgDel.addEventListener("click", () => {
+        imgDel.style.cssText =`
+        cursor: pointer;
+        `;
         card.removeChild(clone);
         card.removeChild(imgDel);
         cardArea.removeChild(card);
     })
 }
     
-    
-
+// Event listener for the button flash. 
 enter.addEventListener("click", (e) => {
+    enter.style.backgroundColor = "white";
+    setTimeout(function(){
+        enter.style.backgroundColor = "transparent";
+   },100); 
+    
     cardGen(selection1, selection2);
     console.log("button");
     
 })
 
 left.appendChild(enter);
-
 
 let footer = createEle('div');
 let item1 = createEle('p');
@@ -605,17 +546,17 @@ item6.textContent = "Radio";
 
 let items = [item1,item2,item3,item4,item5,item6];
 appendCh(items, footer);
-// footer.appendChild(item2);
-// footer.appendChild(item3);
-// footer.appendChild(item4);
-// footer.appendChild(item5);
-// footer.appendChild(item6);
 root.appendChild(footer);
 let aItems = document.getElementsByClassName('footer-style');
-console.log(aItems);
+
 
 for (let aItem of aItems) {
-    console.log(aItem);
+    aItem.addEventListener("mouseover", () => {
+        aItem.style.textDecoration = "underline";
+    })
+    aItem.addEventListener("mouseout", () => {
+        aItem.style.textDecoration = "none";
+    })
     aItem.style.cssText = `
     margin: 1rem;
     padding: 1rem;
@@ -636,7 +577,7 @@ margin-top: 5rem;`;
 
 
 function myFunctionx(x) {
-    if (x.matches) { // If media query matches
+    if (x.matches) { 
         root.style.margin = "1rem 5rem";
         root.style.padding = "1rem 2rem";
         head.style.display = "block";
@@ -653,7 +594,6 @@ function myFunctionx(x) {
         body.style.flexDirection = "row";
         left.style.width = "100%";
         right.style.marginLeft = "1rem";
-        itemsContainer.style.flexWrap = "no-wrap";
         form.style.flexWrap = "wrap";
         itemsContainer.style.flexWrap = "wrap";
         input.style.marginBottom = "1rem";
@@ -665,20 +605,21 @@ function myFunctionx(x) {
         footer.style.flexWrap = "wrap";
         footer.style.maxWidth = "100%";
         enter.style.marginBottom = "2rem";
-    } //else {
-    //   document.body.style.backgroundColor = "pink";
-    // }
+        cardArea.style.flexDirection = "row-reverse";
+        cardArea.style.flexWrap ="wrap-reverse";
+        cardArea.style.alignItems = "center";
+        cardArea.style.justifyContent = "center";
+    }
   }
   
   let x = window.matchMedia("(min-width: 768px) and (max-width: 1166px)")
-  myFunctionx(x) // Call listener function at run time
-  x.addListener(myFunctionx) // Attach listener function on state changes
-
+  myFunctionx(x) 
+  x.addListener(myFunctionx) 
 
 
 
   function myFunctiony(y) {
-    if (y.matches) { // If media query matches
+    if (y.matches) { 
         root.style.margin = "1rem";
         body.style.display = "flex";
         body.style.flexDirection = "column";
@@ -696,20 +637,22 @@ function myFunctionx(x) {
         footer.style.maxWidth = "100%";
         enter.style.marginBottom = "2rem";
         cardArea.style.marginTop = "2rem";
-    } //else {
-    //   document.body.style.backgroundColor = "blue";
-    // }
+        cardArea.style.flexDirection = "column-reverse";
+        cardArea.style.flexWrap ="wrap";
+        cardArea.style.alignItems = "center";
+        cardArea.style.justifyContent = "center";
+    } 
   }
   
   let y = window.matchMedia("(min-width:482px) and (max-width: 767px)")
-  myFunctiony(y) // Call listener function at run time
-  y.addListener(myFunctiony) // Attach listener function on state changes
+  myFunctiony(y) 
+  y.addListener(myFunctiony)
 
 
 
 
   function myFunctionz(z) {
-    if (z.matches) { // If media query matches
+    if (z.matches) { 
         root.style.margin = "1rem";
         body.style.display = "flex";
         body.style.flexDirection = "column";
@@ -726,16 +669,19 @@ function myFunctionx(x) {
         footer.style.maxWidth = "100%";
         enter.style.marginBottom = "2rem";
         cardArea.style.marginTop = "2rem";
+        cardArea.style.flexDirection = "column-reverse";
+        cardArea.style.flexWrap ="wrap";
+        cardArea.style.alignItems = "center";
+        cardArea.style.justifyContent = "center";
     } 
   }
   
   let z = window.matchMedia("(min-width: 321px) and (max-width: 481px)")
-  myFunctionz(z) // Call listener function at run time
-  z.addListener(myFunctionz) // Attach listener function on state changes
-
+  myFunctionz(z) 
+  z.addListener(myFunctionz) 
 
   function myFunctionw(w) {
-    if (w.matches) { // If media query matches
+    if (w.matches) { 
       root.style.margin = "1rem";
       body.style.display = "flex";
       body.style.flexDirection = "column";
@@ -752,9 +698,10 @@ function myFunctionx(x) {
       footer.style.maxWidth = "100%";
       enter.style.marginBottom = "2rem";
       cardArea.style.marginTop = "2rem";
+      cardArea.style.flexDirection = "column-reverse";
     } 
   }
   
   let w = window.matchMedia("(max-width: 320px)")
-  myFunctionw(w) // Call listener function at run time
-  w.addListener(myFunctionw) // Attach listener function on state changes
+  myFunctionw(w) 
+  w.addListener(myFunctionw) 
