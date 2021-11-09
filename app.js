@@ -354,7 +354,7 @@ radioDiv.addEventListener("change", (event) => {
         imgBlob.setAttribute("src", "./assets/images/blob.png");
         console.log(imgElement);
 
-        imgBlob.style.display = "inline-block",
+        imgBlob.style.display = inline-block,
         imgBlob.style.width = "18rem";
         imgBlob.style.height = "17rem";
         imgBlob.style.marginTop = "3rem";
