@@ -354,7 +354,7 @@ radioDiv.addEventListener("change", (event) => {
         imgBlob.setAttribute("src", "./assets/images/blob.png");
         console.log(imgElement);
 
-        imgBlob.style.display = inline-block,
+        imgBlob.style.cssText = 'display:inline-block',
         imgBlob.style.width = "18rem";
         imgBlob.style.height = "17rem";
         imgBlob.style.marginTop = "3rem";
@@ -398,7 +398,7 @@ cardArea.style.alignItems = "center";
 cardArea.style.justifyContent = "center";
 cardArea.style.position = "relative";
 cardArea.style.zIndex = "1";
-cardArea.style.marginTop = "1rem";
+cardArea.style.marginTop = "0.5rem";
 
 root.appendChild(cardArea);
 
@@ -421,11 +421,8 @@ function cardGen(el1, el2) {
     cardArea.appendChild(card);
 
     let clone = right.cloneNode(true);
-    
-    clone.style.display = "flex";
-    clone.style.flexDirection = "column";
-    clone.style.justifyContent = "center";
-    clone.style.alignItems = "flex-start";
+
+    clone.style.backgroundColor = "red";
     clone.style.width = "15rem";
     clone.style.height = "20rem";
     clone.style.marginLeft = "2rem";
