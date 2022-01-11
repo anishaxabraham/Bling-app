@@ -422,7 +422,6 @@ function cardGen(el1, el2) {
 
     let clone = right.cloneNode(true);
 
-    clone.style.backgroundColor = "red";
     clone.style.width = "15rem";
     clone.style.height = "20rem";
     clone.style.marginLeft = "2rem";
